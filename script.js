@@ -17,29 +17,16 @@ fetch('https://quotes15.p.rapidapi.com/quotes/random/?language_code=es', quoteAp
 
 const userInput = document.getElementById("quote-input");
 
+
+
+
 let quote = "";
 let mistakes = 0;
-
 const renderNewQuote = async() => {
-const response = await fetch(quoteApiUrl);
-
-let data = await response.json();
-
-quote = data.content;
-
- console.log(data.content);
-
-let arr = quote.split("").map(value => {
-    return  "<span class='quote-chars'>" + value + "</span>"
-
-});
-quoteSection.innerHTML += arr.join("");
-console.log(arr)
-};
-
- userInput.addEventListener("input", () => {
-    let quoteChars = document.querySelectorAll(".quote-chars");
-    
+    console.log('b')
+ userInput.addEventListener('input', () => {
+ let quoteChars = document.querySelectorAll(".quote-chars");
+    console.log('c')
     quoteChars = Array.from(quoteChars);
     
     let userInputChars = userInput.value.split("");
@@ -69,49 +56,21 @@ console.log(arr)
             return element.classList.contains("success");
          }); 
          if(check){
-            displayResult();
+            console.log('a')
          }
     });
  });
+}
 
-// function updateTimer(){
-//     if(time == 0){
-//         displayResult();
-//     }
-//     else{
-//         document.getElementById("timer").innerText =
-//         --time + "s";
-//     }
-// }
-
- 
-
-//  const displayResult = () => {
-//     document.querySelector(".result").style.display =
-//     "block";
-//     clearInterval(timer);
-//     document.getElementById("stop-test").style.display =
-//     "none";
-//     userInput.disabled = true;
-//     let timeTaken = 1;
-//     if(time != 0){
-//         timeTaken = (60 - time) / 100;
-//     }
-//     document.getElementById("wpm").innerText = (userInput.value.length / 5 / timeTaken).toFixed(2) + " wpm";
-//     document.getElementById("accuracy").innerText =
-//     Math.round((userInput.value.length - mistakes) / userInput.value.length * 100) + "%";
-//  }; 
 
  const startTest = () => {
     
     mistakes = 0;
     timer ="";
-    userInput.disabled = false;
-    timeReduce()
+    
     document.getElementById("start-test").style.display =
-    "none";
-    document.getElementById("stop-test").style.display =
-    "block"; 
+    "block";
+    location.reload()
  };
 
 window.onload = () => {
@@ -121,10 +80,8 @@ window.onload = () => {
 
     document.getElementById("start-test").style.display =
     "block";
-    document.getElementById("stop-test").style.display =
-    "none";
-
-    userInput.disabled = true;
+    // document.getElementById("stop-test").style.display =
+    // "none";
     renderNewQuote();
 
 }
