@@ -15,18 +15,18 @@ const quoteApiUrl = {
 fetch('https://quotes15.p.rapidapi.com/quotes/random/?language_code=es', quoteApiUrl)
 	.then(response => response.json())
     .then(response => {
-    quoteSection.innerText = `${response.content}`
+    quoteSection.innerHTML = `${response.content}`
     })
-	.catch(err => console.error(err));
 
 
-let arr = quote.split("").map(value => {    
+let arr = quote.split('').map(value => {    
     return  "<span class='quote-chars'>" + value + "</span>"
+    
     
 });
 
 quoteSection.innerHTML += arr.join("");
-console.log(arr)
+
 };
 
 userInput.addEventListener("input", () => {
@@ -70,50 +70,10 @@ let userInputChars = userInput.value.split("");
     });
  });
 
-//  userInput.addEventListener('input', () => {
-//  let quoteChars = document.querySelectorAll(".quote-input");
-//     console.log('c')
-//     quoteChars = Array.from(quoteChars);
-  
-//     let userInputChars = userInput.value.split("");
-//   console.log(userInputChars)
-//         quoteChars.forEach((char, index) => {
-//         if(char.innerText == userInputChars[index]){
-//             char.classList.add("success");
-//         }
-
-//       else if(userInputChars[index] == null){
-//            if(char.classList.contains("success")){
-//               char.classList.remove("success");
-//         }
-//        else{
-//                 char.classList.remove("fail");
-//             }
-//         }
-//             else{
-//                 if(!char.classList.contains("fail")){
-//                     mistakes += 1;
-//                     char.classList.add("fail");
-//                 }
-//                 document.getElementById("mistakes").innerText =
-//                 mistakes;   
-//         }
-//          let check = quoteChars.every(element=>{
-//             return element.classList.contains("success");
-//          }); 
-//          if(check){
-//             console.log('a')
-//          }
-//     });
-//  });
-
-
 
  const startTest = () => {
     
     mistakes = 0;
-    // userInput.disabled = false;
-    
     document.getElementById("start-test").style.display =
     "none";
     location.reload()
@@ -121,14 +81,9 @@ let userInputChars = userInput.value.split("");
 
 window.onload = () => {
     
-    
     userInput.value = "";
-
     document.getElementById("start-test").style.display =
     "block";
-    // document.getElementById("stop-test").style.display =
-    // "none";
-    // userInput.disabled = true
     renderNewQuote();
 
 }
