@@ -1,4 +1,9 @@
+const userInput = document.getElementById("quote-input");
+const quoteSection = document.getElementById("quote");
+let mistakes = 0;
+let quote = ""
 
+const renderNewQuote = async() => {
 const quoteApiUrl = {
 	method: 'GET',
 	headers: {
@@ -10,29 +15,33 @@ const quoteApiUrl = {
 fetch('https://quotes15.p.rapidapi.com/quotes/random/?language_code=es', quoteApiUrl)
 	.then(response => response.json())
     .then(response => {
-    let quoteSection = document.getElementById("quote");
     quoteSection.innerText = `${response.content}`
     })
 	.catch(err => console.error(err));
 
-const userInput = document.getElementById("quote-input");
 
+let arr = quote.split("").map(value => {    
+    return  "<span class='quote-chars'>" + value + "</span>"
+    
+});
 
+quoteSection.innerHTML += arr.join("");
+console.log(arr)
+};
 
-
-let quote = "";
-let mistakes = 0;
-const renderNewQuote = async() => {
-    console.log('b')
- userInput.addEventListener('input', () => {
+userInput.addEventListener("input", () => {
+    console.log("letter")
  let quoteChars = document.querySelectorAll(".quote-chars");
-    console.log('c')
+
     quoteChars = Array.from(quoteChars);
     
-    let userInputChars = userInput.value.split("");
-
+let userInputChars = userInput.value.split("");
+    console.log(userInputChars)
+    console.log(quoteChars)
+    
         quoteChars.forEach((char, index) => {
         if(char.innerText == userInputChars[index]){
+            console.log("success")
             char.classList.add("success");
         }
 
@@ -60,16 +69,53 @@ const renderNewQuote = async() => {
          }
     });
  });
-}
+
+//  userInput.addEventListener('input', () => {
+//  let quoteChars = document.querySelectorAll(".quote-input");
+//     console.log('c')
+//     quoteChars = Array.from(quoteChars);
+  
+//     let userInputChars = userInput.value.split("");
+//   console.log(userInputChars)
+//         quoteChars.forEach((char, index) => {
+//         if(char.innerText == userInputChars[index]){
+//             char.classList.add("success");
+//         }
+
+//       else if(userInputChars[index] == null){
+//            if(char.classList.contains("success")){
+//               char.classList.remove("success");
+//         }
+//        else{
+//                 char.classList.remove("fail");
+//             }
+//         }
+//             else{
+//                 if(!char.classList.contains("fail")){
+//                     mistakes += 1;
+//                     char.classList.add("fail");
+//                 }
+//                 document.getElementById("mistakes").innerText =
+//                 mistakes;   
+//         }
+//          let check = quoteChars.every(element=>{
+//             return element.classList.contains("success");
+//          }); 
+//          if(check){
+//             console.log('a')
+//          }
+//     });
+//  });
+
 
 
  const startTest = () => {
     
     mistakes = 0;
-    timer ="";
+    // userInput.disabled = false;
     
     document.getElementById("start-test").style.display =
-    "block";
+    "none";
     location.reload()
  };
 
@@ -82,6 +128,7 @@ window.onload = () => {
     "block";
     // document.getElementById("stop-test").style.display =
     // "none";
+    // userInput.disabled = true
     renderNewQuote();
 
 }

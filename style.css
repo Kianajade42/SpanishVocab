@@ -59,3 +59,21 @@ textarea {
     font-size: 16px;
     border: 3px solid #555;
 }
+
+.success{
+    color: green;
+}
+.fail {
+    color: red;
+}
+.quote-chars {
+    display: inline-block;
+    color: rgb(161, 157, 157);
+    border: solid 1px rgb(61, 58, 58);
+    box-shadow: 0 5px 5px rgba(63, 62, 62, 0.678);
+    text-decoration: none;
+    padding: 7px;
+    margin: 3px;
+    outline: none;
+    border-radius: 5px;
+}
